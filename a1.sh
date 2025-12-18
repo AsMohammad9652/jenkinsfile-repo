@@ -3,7 +3,8 @@
 filename=10
 
 if [ "$filename" -eq 10 ]; then
-    echo "it is number"
+    echo "it is positive number"
 else
-    echo "not a number"
+    echo "it is negative number"
 fi
+hostname
