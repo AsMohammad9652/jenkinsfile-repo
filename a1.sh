@@ -8,3 +8,4 @@ else
     echo "it is negative number"
 fi
 hostname
+ls -la
