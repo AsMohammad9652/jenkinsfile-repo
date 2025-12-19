@@ -9,3 +9,5 @@ else
 fi
 hostname
 ls -la
+ps -ef
+lscpu
