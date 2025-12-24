@@ -1,0 +1,66 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = ""
+        CONTAINER_NAME = "myapp_container"
+    }pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "aslam9441/mas:irfan"
+        CONTAINER_NAME = "myapp11_container"
+    }
+
+    stages {
+        stage('Pull Docker Image') {
+            steps {
+                echo "Pulling Docker image ${IMAGE_NAME}"
+                bat "docker pull ${IMAGE_NAME}"
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                echo "Running Docker container ${CONTAINER_NAME}"
+                bat """
+                docker rm -f ${CONTAINER_NAME} || echo Container not found
+                docker run -d --name ${CONTAINER_NAME} -p 8093:8093 ${IMAGE_NAME}
+                """
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline completed"
+        }
+    }
+}
+
+
+    stages {
+        stage('Pull Docker Image') {
+            steps {
+                echo "Pulling Docker image ${IMAGE_NAME}"
+                bat "docker pull ${IMAGE_NAME}"
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                echo "Running Docker container ${CONTAINER_NAME}"
+                bat """
+                docker rm -f ${CONTAINER_NAME} || echo Container not found
+                docker run -d --name ${CONTAINER_NAME} -p 8092:8092 ${IMAGE_NAME}
+                """
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline completed"
+        }
+    }
+}
